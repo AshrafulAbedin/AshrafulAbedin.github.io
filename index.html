@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Profile Component</title>
+  <style>
+    body {
+      font-family: Consolas, 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f8f8f8;
+    }
+    
+    .profile-box {
+      background-color: #deb887; /* burly wood */
+      border: 3px solid #352620;
+      border-radius: 12px;
+      padding: 25px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .profile-content {
+      text-align: center;
+    }
+    
+    .profile-name {
+      color: #352620;
+      font-size: 32px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    
+    .typewriter-container {
+      height: 26px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .typewriter-text {
+      color: #352620;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    
+    .cursor {
+      color: #352620;
+      font-size: 20px;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    .social-space {
+      margin-top: 30px;
+      height: 60px; /* approximately 2 inches of space */
+      border-top: 1px solid #35262050;
+      padding-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 5px;
+      width: 100%;
+    }
+    
+    .social-icon {
+      color: #352620;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    .social-icon:hover {
+      transform: scale(1.4);
+    }
+  </style>
+  <!-- Add Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <div class="profile-box">
+    <div class="profile-content">
+      <h1 class="profile-name">Ashraful_Abedin</h1>
+      <div class="typewriter-container">
+        <span class="typewriter-text" id="typewriter"></span>
+        <span class="cursor">_</span>
+      </div>
+      <div class="social-space">
+        <div class="social-row">
+          <a href="https://medium.com/@asrafulfardin" class="social-icon" target="_blank" title="Medium"><i class="fa-brands fa-medium"></i></a>
+          <a href="https://www.linkedin.com/in/md-ashraful-abedin-3b653b1a9/" class="social-icon" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://leetcode.com/u/Nameis_Abedin/" class="social-icon" target="_blank" title="LeetCode"><i class="fa-solid fa-code"></i></a>
+        </div>
+        <div class="social-row">
+          <a href="#" class="social-icon" target="_blank" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/nameis_abedin/" class="social-icon" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://dev.to/asraful_fardin_d63ee6854e" class="social-icon" target="_blank" title="Dev.to"><i class="fa-brands fa-dev"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Typewriter effect
+    const typewriterElement = document.getElementById('typewriter');
+    const phrases = [
+      'Aspiring Software Engineer',
+      'Passionate about Programming',
+      'Fulltime Computer Mechanic'
+    ];
+    
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function type() {
+      const currentPhrase = phrases[phraseIndex];
+      
+      if (isDeleting) {
+        // Deleting text
+        typewriterElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+      } else {
+        // Typing text
+        typewriterElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        
+        if (charIndex === currentPhrase.length) {
+          isDeleting = true;
+          setTimeout(type, 2000); // Wait before starting to delete
+          return;
+        }
+      }
+      
+      const typingSpeed = isDeleting ? 50 : 100;
+      setTimeout(type, typingSpeed);
+    }
+    
+    // Start the typing effect
+    setTimeout(type, 1000);
+  </script>
+</body>
+</html>
